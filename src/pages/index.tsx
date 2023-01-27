@@ -1,33 +1,24 @@
 import {Card} from "../components/Card";
 import {api} from "../api";
-import React, {useEffect} from "react";
-
-const card = [
-  {
-    id: 1,
-    name: 'Nubank',
-    limit: 1000,
-    available: 800,
-    used: 200,
-    type: 'mastercard',
-  },
-  {
-    id: 2,
-    name: 'Pão de açucar',
-    limit: 2000,
-    available: 1500,
-    used: 500,
-    type: 'visa',
-  },
-]
-
-api.get('card').then(response => {
-  console.log(response.data, 'success ')
-}).catch(error => {
-  console.log(error, 'error')
-})
+import React, {useEffect, useState} from "react";
+import {ICard} from "./interfaces/Card";
 
 export function Index() {
-  // return <Card data={card} />
-}
+  const [data, setData] = useState<ICard[]>([])
 
+  const fetchData = async () => {
+    try {
+      const response = await api.get('card')
+      setData(response.data)
+      console.log(response.data, 'success ')
+    } catch (error) {
+      console.log(error, 'error')
+    }
+  }
+
+  useEffect( () => {
+     fetchData()
+  }, [])
+
+  return <Card data={data}/>
+}
