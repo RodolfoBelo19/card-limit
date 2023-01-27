@@ -1,4 +1,6 @@
 import {Card} from "../components/Card";
+import {api} from "../api";
+import React, {useEffect} from "react";
 
 const card = [
   {
@@ -19,7 +21,13 @@ const card = [
   },
 ]
 
+api.get('card').then(response => {
+  console.log(response.data, 'success ')
+}).catch(error => {
+  console.log(error, 'error')
+})
+
 export function Index() {
-  return <Card data={card} />
+  // return <Card data={card} />
 }
 
