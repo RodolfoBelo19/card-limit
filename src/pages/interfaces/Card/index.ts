@@ -6,3 +6,8 @@ export interface ICard {
   used: number,
   type: string,
 }
+
+// export interface ICardType {
+//   mastercard: JSX.Element,
+//   visa: JSX.Element,
+// }

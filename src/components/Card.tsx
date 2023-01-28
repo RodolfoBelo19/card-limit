@@ -1,7 +1,50 @@
 import {FormatValue} from "./FormatValue";
 import {ICard} from "../pages/interfaces/Card";
+import React from "react";
 
 export const Card = ({data}: any) => {
+  const cardType = (type: string) => {
+    if (type == 'mastercard') {
+      return (
+        <img
+          src={"mastercard.png"}
+          alt="mastercard"
+          className="w-20"
+        />
+      )
+    } else {
+      return (
+        <img
+          src={"visa.png"}
+          alt="visa"
+          className="w-20"
+        />
+      )
+    }
+  }
+
+  /* test object literals ****************************************
+    const cardType = (cardType: ICardType) => {
+      const card = {
+        mastercard: (
+          <img
+            src={"mastercard.png"}
+            alt="mastercard"
+            className="w-20"
+          />
+        ),
+        visa: (
+          <img
+            src={"visa.png"}
+            alt="visa"
+            className="w-20"
+          />
+        )
+      }
+      return card[cardType]
+    }
+  *****/
+
   return (
     <div
       className="flex sm:flex-row flex-col w-full p-1 text-white">
@@ -16,37 +59,24 @@ export const Card = ({data}: any) => {
                 <div className="w-full">
                   <p className="flex">
                     <strong className="mx-2">name:</strong>
-                    {card.name}
+                    {card?.name}
                   </p>
                   <p className="flex">
                     <strong className="mx-2">total limit:</strong>
-                    <FormatValue value={card.limit}/>
+                    <FormatValue value={card?.limit}/>
                   </p>
                   <p className="flex">
                     <strong className="mx-2">available:</strong>
-                    <FormatValue value={card.available}/>
+                    <FormatValue value={card?.available}/>
                   </p>
                   <p className="flex">
                     <strong className="mx-2">used:</strong>
-                    <FormatValue value={card.used}/>
+                    <FormatValue value={card?.used}/>
                   </p>
                 </div>
                 <div>
-                  {
-                    card.type === 'mastercard' ? (
-                      <img
-                        src={"https://www.freepnglogos.com/uploads/mastercard-png/mastercard-marcus-samuelsson-group-2.png"}
-                        alt="mastercard"
-                        className="w-20"
-                      />
-                    ) : (
-                      <img
-                        src={"https://upload.wikimedia.org/wikipedia/commons/thumb/a/ac/Old_Visa_Logo.svg/1280px-Old_Visa_Logo.svg.png"}
-                        alt="visa"
-                        className="w-20"
-                      />
-                    )
-                  }
+                  {cardType(card?.type)}
+                  {/*{cardTest(card?.type)}*/}
                 </div>
               </div>
             </div>

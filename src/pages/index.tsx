@@ -16,8 +16,8 @@ export function Index() {
     }
   }
 
-  useEffect( () => {
-     fetchData()
+  useEffect(() => {
+    fetchData()
   }, [])
 
   return <Card data={data}/>
